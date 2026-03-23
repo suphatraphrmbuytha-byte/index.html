@@ -3,36 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Tab - Red Background</title>
+    <title>Get Script</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #900; height: 100vh; overflow: hidden; }
-        .container {
-            position: relative; width: 100vw; height: 100vh;
-            background: radial-gradient(circle, #ff0000 0%, #660000 100%);
-            overflow: hidden;
-        }
-        .container::before {
-            content: ''; position: absolute; width: 150%; height: 150%;
-            top: -25%; left: -25%;
-            background-image: conic-gradient(transparent, transparent, transparent, #ffea00, transparent);
-            animation: animate 4s linear infinite;
-        }
-        @keyframes animate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .inner-content {
-            position: absolute; inset: 5px;
-            background: radial-gradient(circle, #cc0000 0%, #800000 100%);
-            z-index: 1;
-        }
-        @media (max-width: 600px) { .inner-content { inset: 3px; } }
+        body { background: radial-gradient(circle, #d4af37 0%, #1e5631 100%); height: 100vh; display: flex; justify-content: center; align-items: center; font-family: sans-serif; color: white; text-align: center; }
+        .box { background: rgba(0,0,0,0.8); padding: 30px; border-radius: 15px; border: 2px solid #d4af37; max-width: 90%; }
+        code { display: block; background: #111; padding: 15px; margin: 15px 0; word-break: break-all; border-radius: 5px; border: 1px solid #d4af37; }
+        .copy-btn { padding: 10px 30px; background: #d4af37; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="inner-content"></div>
+    <div class="box">
+        <h2>คัดลอกสคริปต์ของคุณ</h2>
+        <code id="scriptText">loadstring(game:HttpGet("https://raw.githubusercontent.com/onion132005-bit/esponion.lua/refs/heads/main/onion13v7.lua"))()</code>
+        <button class="copy-btn" onclick="copy()">คัดลอก</button>
     </div>
+    <script>
+        function copy() {
+            const t = document.getElementById('scriptText').innerText;
+            navigator.clipboard.writeText(t);
+            alert('คัดลอกแล้ว!');
+        }
+    </script>
 </body>
 </html>
