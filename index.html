@@ -3,86 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red Background with Running Light</title>
+    <title>Red Web - Home</title>
     <style>
-        /* ตั้งค่าพื้นฐานให้เต็มหน้าจอ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #900; /* สีแดงเข้มพื้นหลังหลัก */
+            background-color: #900;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden; /* ป้องกันแถบเลื่อน */
+            overflow: hidden;
             font-family: 'Arial', sans-serif;
         }
 
-        /* กล่องคอนเทนเนอร์หลักที่สร้างเอฟเฟกต์ไฟวิ่ง */
+        /* เอฟเฟกต์ไฟวิ่งขอบ */
         .container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle, #ff0000 0%, #660000 100%); /* ไล่เฉดสีแดงให้ดูมีมิติ */
+            background: radial-gradient(circle, #ff0000 0%, #660000 100%);
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* สร้างเส้นไฟวิ่งโดยใช้ pseudo-elements */
         .container::before {
             content: '';
             position: absolute;
-            /* ขยายขนาดให้ใหญ่กว่าจอเล็กน้อยเพื่อให้หมุนแล้วไม่เห็นขอบตัด */
             width: 150%;
             height: 150%;
             top: -25%;
             left: -25%;
-            /* สร้างแถบไฟสีเหลือง/ขาว สลับกับสีโปร่งใส */
-            background-image: conic-gradient(
-                transparent, 
-                transparent, 
-                transparent, 
-                #ffea00, /* สีไฟวิ่ง */
-                transparent
-            );
-            animation: animate 4s linear infinite;
+            background-image: conic-gradient(transparent, transparent, transparent, #ffea00, transparent);
+            animation: rotateFire 4s linear infinite;
         }
 
-        /* อนิเมชันการหมุนเพื่อให้ไฟดูเหมือนวิ่งรอบขอบ */
-        @keyframes animate {
+        @keyframes rotateFire {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* เลเยอร์ด้านบนเพื่อทับส่วนกลาง ให้เหลือแค่ขอบที่มองเห็นไฟ */
         .inner-content {
             position: absolute;
-            inset: 5px; /* ความหนาของขอบไฟ (5px) */
+            inset: 5px;
             background: radial-gradient(circle, #cc0000 0%, #800000 100%);
             z-index: 1;
-            /* เอาส่วนจัดหน้าตัวหนังสือออก */
-            /* display: flex;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
-            text-align: center; */
-            border-radius: 2px;
+            gap: 30px; /* เว้นระยะห่างระหว่างปุ่ม */
         }
 
-        /* เอาสไตล์ของตัวหนังสือออก */
-        /* h1 {
-            font-size: 3rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        } */
+        /* สไตล์ปุ่มกด */
+        .btn {
+            padding: 20px 40px;
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            /* อนิเมชั่นลอยขึ้นลง */
+            animation: floating 3s ease-in-out infinite;
+        }
 
-        /* ปรับแต่งสำหรับมือถือ */
+        /* ปุ่มที่ 2 ให้จังหวะลอยต่างกันนิดหน่อย */
+        .btn-pvp { animation-delay: 1.5s; }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ตัวหนังสือสีรุ้ง */
+        .rainbow-text {
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 400% 100%;
+            animation: rainbowMove 5s linear infinite;
+        }
+
+        @keyframes rainbowMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1) translateY(-20px);
+        }
+
         @media (max-width: 600px) {
-            /* h1 { font-size: 1.8rem; } */
-            .inner-content { inset: 3px; } /* ขอบเล็กลงในมือถือ */
+            .btn { font-size: 1.5rem; padding: 15px 30px; }
+            .inner-content { inset: 3px; }
         }
     </style>
 </head>
@@ -90,8 +109,14 @@
 
     <div class="container">
         <div class="inner-content">
-            </div>
+            <a href="farm.html" target="_blank" class="btn">
+                <span class="rainbow-text">สำหรับฟาม</span>
+            </a>
+            <a href="pvp.html" target="_blank" class="btn btn-pvp">
+                <span class="rainbow-text">PvP</span>
+            </a>
+        </div>
     </div>
 
 </body>
-</html> 
+</html>
