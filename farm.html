@@ -3,26 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Script</title>
+    <title>Unlock</title>
     <style>
-        body { background: radial-gradient(circle, #d4af37 0%, #1e5631 100%); height: 100vh; display: flex; justify-content: center; align-items: center; font-family: sans-serif; color: white; text-align: center; }
-        .box { background: rgba(0,0,0,0.8); padding: 30px; border-radius: 15px; border: 2px solid #d4af37; max-width: 90%; }
-        code { display: block; background: #111; padding: 15px; margin: 15px 0; word-break: break-all; border-radius: 5px; border: 1px solid #d4af37; }
-        .copy-btn { padding: 10px 30px; background: #d4af37; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #900; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; font-family: sans-serif; }
+        .container { position: relative; width: 100vw; height: 100vh; background: radial-gradient(circle, #ff0000 0%, #660000 100%); overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .container::before { content: ''; position: absolute; width: 150%; height: 150%; top: -25%; left: -25%; background-image: conic-gradient(transparent, transparent, transparent, #ffea00, transparent); animation: rotateFire 4s linear infinite; }
+        @keyframes rotateFire { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .inner-content { position: absolute; inset: 5px; background: radial-gradient(circle, #cc0000 0%, #800000 100%); z-index: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; }
+        .task-btn { width: 300px; padding: 15px; border: 2px solid white; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .rainbow { background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); -webkit-background-clip: text; color: transparent; background-size: 400%; animation: rb 5s linear infinite; }
+        @keyframes rb { 0% { background-position: 0%; } 100% { background-position: 100%; } }
+        #unlockBtn { margin-top: 20px; padding: 15px 40px; font-size: 1.5rem; border-radius: 50px; border: none; color: white; background: gray; cursor: not-allowed; transition: 0.5s; }
+        #unlockBtn.active { background: #2ecc71; cursor: pointer; box-shadow: 0 0 20px #2ecc71; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h2>คัดลอกสคริปต์ของคุณ</h2>
-        <code id="scriptText">loadstring(game:HttpGet("https://raw.githubusercontent.com/onion132005-bit/esponion.lua/refs/heads/main/onion13v7.lua"))()</code>
-        <button class="copy-btn" onclick="copy()">คัดลอก</button>
+    <div class="container">
+        <div class="inner-content">
+            <a href="https://www.tiktok.com/@mk1_game" target="_blank" class="task-btn" onclick="done(1)"><span class="rainbow">1. กดติดตามเพื่อปลดล็อค</span></a>
+            <a href="https://www.tiktok.com/@mk1_game" target="_blank" class="task-btn" onclick="done(2)"><span class="rainbow">2. คอมเม้นต์เพื่อปลดล็อค</span></a>
+            <a href="https://www.tiktok.com/@mk1_game" target="_blank" class="task-btn" onclick="done(3)"><span class="rainbow">3. กดใจเพื่อปลดล็อค</span></a>
+            <button id="unlockBtn" onclick="goNext()">ปลดล็อค</button>
+        </div>
     </div>
     <script>
-        function copy() {
-            const t = document.getElementById('scriptText').innerText;
-            navigator.clipboard.writeText(t);
-            alert('คัดลอกแล้ว!');
-        }
+        let count = 0; let tasks = [false, false, false];
+        function done(n) { if(!tasks[n-1]) { tasks[n-1] = true; count++; } if(count===3) document.getElementById('unlockBtn').classList.add('active'); }
+        function goNext() { if(count===3) window.location.href = 'final.html'; else alert('ทำภารกิจให้ครบก่อน!'); }
     </script>
 </body>
 </html>
