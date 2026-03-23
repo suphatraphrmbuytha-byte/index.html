@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Select Mode</title>
+    <title>Home</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #900; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; font-family: 'Arial', sans-serif; }
+        body { background-color: #900; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; font-family: sans-serif; }
         .container { position: relative; width: 100vw; height: 100vh; background: radial-gradient(circle, #ff0000 0%, #660000 100%); overflow: hidden; display: flex; justify-content: center; align-items: center; }
         .container::before { content: ''; position: absolute; width: 150%; height: 150%; top: -25%; left: -25%; background-image: conic-gradient(transparent, transparent, transparent, #ffea00, transparent); animation: rotateFire 4s linear infinite; }
         @keyframes rotateFire { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -20,8 +20,8 @@
 <body>
     <div class="container">
         <div class="inner-content">
-            <a href="task.html" class="btn"><span class="rainbow">สำหรับฟาม</span></a>
-            <a href="task.html" class="btn" style="animation-delay: 1.5s;"><span class="rainbow">PvP</span></a>
+            <a href="farm.html" class="btn"><span class="rainbow">สำหรับฟาม</span></a>
+            <a href="pvp.html" class="btn" style="animation-delay: 1.5s;"><span class="rainbow">PvP</span></a>
         </div>
     </div>
 </body>
