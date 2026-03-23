@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlock Task</title>
+    <style>
+        /* (ใช้ CSS พื้นหลังสีแดงเหมือนเดิม) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #900; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; font-family: 'Arial', sans-serif; }
+        .container { position: relative; width: 100vw; height: 100vh; background: radial-gradient(circle, #ff0000 0%, #660000 100%); overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .container::before { content: ''; position: absolute; width: 150%; height: 150%; top: -25%; left: -25%; background-image: conic-gradient(transparent, transparent, transparent, #ffea00, transparent); animation: rotateFire 4s linear infinite; }
+        @keyframes rotateFire { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .inner-content { position: absolute; inset: 5px; background: radial-gradient(circle, #cc0000 0%, #800000 100%); z-index: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 15px; }
+        
+        .task-btn { width: 300px; padding: 15px; border: 2px solid white; border-radius: 10px; text-decoration: none; text-align: center; font-weight: bold; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .rainbow { background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); -webkit-background-clip: text; color: transparent; background-size: 400%; animation: rb 5s linear infinite; }
+        @keyframes rb { 0% { background-position: 0%; } 100% { background-position: 100%; } }
+
+        /* ปุ่มปลดล็อค */
+        #unlockBtn { margin-top: 20px; padding: 15px 40px; font-size: 1.5rem; border-radius: 50px; border: none; color: white; background: gray; cursor: not-allowed; transition: 0.5s; }
+        #unlockBtn.active { background: #2ecc71; cursor: pointer; box-shadow: 0 0 20px #2ecc71; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="inner-content">
+            <a href="https://www.tiktok.com/@mk1_game?_r=1&_t=ZS-94vmKmq8u0o" target="_blank" class="task-btn" onclick="done(1)"><span class="rainbow">1. กดติดตามเพื่อปลดล็อค</span></a>
+            <a href="https://www.tiktok.com/@mk1_game?_r=1&_t=ZS-94vmKmq8u0o" target="_blank" class="task-btn" onclick="done(2)"><span class="rainbow">2. คอมเม้นต์ในคลิปที่ปักหมุด</span></a>
+            <a href="https://www.tiktok.com/@mk1_game?_r=1&_t=ZS-94vmKmq8u0o" target="_blank" class="task-btn" onclick="done(3)"><span class="rainbow">3. กดใจคลิปเพื่อปลดล็อค</span></a>
+            <button id="unlockBtn" onclick="goNext()">ปลดล็อค</button>
+        </div>
+    </div>
+    <script>
+        let count = 0; let tasks = [false, false, false];
+        function done(n) { if(!tasks[n-1]) { tasks[n-1] = true; count++; } if(count===3) document.getElementById('unlockBtn').classList.add('active'); }
+        function goNext() { if(count===3) window.location.href = 'final.html'; else alert('ทำภารกิจให้ครบก่อนครับ!'); }
+    </script>
+</body>
+</html>
